@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Solar</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <!-- Fondo de estrellas generado por JS -->
+    <div class="stars" aria-hidden="true"></div>
+
+    <main>
+        <header>
+            <h1>Sistema Solar</h1>
+        </header>
+
+        <section class="universo" aria-label="Sistema Solar real">
+            <div class="sol" role="img" aria-label="Sol del sistema solar real">
+                <span class="nombre" aria-hidden="true"></span>
+            </div>
+            <div class="orbita mercurio"><div class="planeta mercurio"><span>Mercurio</span></div></div>
+            <div class="orbita venus"><div class="planeta venus"><span>Venus</span></div></div>
+            <div class="orbita tierra">
+                <div class="planeta tierra"><span>Tierra</span>
+                    <div class="luna-realista" style="width:12px;height:12px;right:-18px;top:60%;background:radial-gradient(circle at 60% 40%, #f5f3e7 70%, #b0b0b0 100%);box-shadow:0 0 4px 1px #fff8,0 0 2px 0.5px #b0b0b0;border:1px solid #fff6;animation: orbita-luna-tierra 3s linear infinite;transform-origin:-18px 50%;"></div>
+                </div>
+            </div>
+            <div class="orbita marte">
+                <div class="planeta marte"><span>Marte</span>
+                    <div class="luna-realista" style="width:7px;height:7px;right:-12px;top:40%;background:#bca;box-shadow:0 0 2px #fff8;animation: orbita-luna-tierra 2.2s linear infinite;transform-origin:-12px 50%;"></div>
+                    <div class="luna-realista" style="width:5px;height:5px;right:-16px;top:70%;background:#eee;box-shadow:0 0 1px #fff8;animation: orbita-luna-tierra 3.1s linear infinite;transform-origin:-16px 50%;"></div>
+                </div>
+            </div>
+            <div class="orbita jupiter">
+                <div class="planeta jupiter"><span>Júpiter</span>
+                    <div class="luna-realista" style="width:8px;height:8px;right:-20px;top:30%;background:#ffe066;opacity:0.8;animation: orbita-luna-tierra 1.5s linear infinite;transform-origin:-20px 50%;"></div>
+                    <div class="luna-realista" style="width:7px;height:7px;right:-24px;top:60%;background:#e0e0e0;opacity:0.7;animation: orbita-luna-tierra 2.5s linear infinite;transform-origin:-24px 50%;"></div>
+                    <div class="luna-realista" style="width:9px;height:9px;right:-28px;top:80%;background:#bdbdbd;opacity:0.7;animation: orbita-luna-tierra 3.5s linear infinite;transform-origin:-28px 50%;"></div>
+                    <div class="luna-realista" style="width:10px;height:10px;right:-32px;top:20%;background:#a1887f;opacity:0.7;animation: orbita-luna-tierra 4.5s linear infinite;transform-origin:-32px 50%;"></div>
+                </div>
+            </div>
+            <div class="orbita saturno">
+                <div class="planeta saturno"><span>Saturno</span>
+                    <div class="luna-realista" style="width:7px;height:7px;right:-18px;top:40%;background:#e7c97b;opacity:0.7;animation: orbita-luna-tierra 2.1s linear infinite;transform-origin:-18px 50%;"></div>
+                    <div class="luna-realista" style="width:6px;height:6px;right:-22px;top:70%;background:#b0b0b0;opacity:0.7;animation: orbita-luna-tierra 2.8s linear infinite;transform-origin:-22px 50%;"></div>
+                </div>
+            </div>
+            <div class="orbita urano"><div class="planeta urano"><span>Urano</span></div></div>
+            <div class="orbita neptuno"><div class="planeta neptuno"><span>Neptuno</span></div></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Andersson Leandro Ambuludi Gomez &copy; 2025</p>
+    </footer>
+    <script src="estrellas.js"></script>
+    <script src="planetas.js"></script>
+</body>
+</html>

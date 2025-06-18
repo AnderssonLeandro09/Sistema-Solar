@@ -1,0 +1,411 @@
+/* =========================
+   Reset y Variables Globales
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color-fondo: #0a0a23;
+  --color-fondo-grad: #000;
+  --color-sol: #ffe066;
+  --color-sol-borde: #ffb300;
+  --color-sol-sombra: #ff9900;
+  --color-texto: #fff;
+  --color-borde: #fff5;
+  --fuente-base: 'Segoe UI', Arial, sans-serif;
+  --tamano-base: 1rem;
+}
+
+/* =========================
+   Estilos Base
+   ========================= */
+html {
+  font-size: 16px;
+}
+body {
+  background: radial-gradient(ellipse at center, var(--color-fondo) 0%, var(--color-fondo-grad) 100%);
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--fuente-base);
+  font-size: var(--tamano-base);
+  color: var(--color-texto);
+  position: relative;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url('https://static.wikia.nocookie.net/dragonball/images/2/2d/Shenlong_DBZ.png') no-repeat center center/contain;
+  opacity: 0.13;
+  filter: grayscale(0.1) brightness(1.1) drop-shadow(0 0 60px #00ff00);
+}
+
+/* =========================
+   Layout General
+   ========================= */
+main {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+header {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  width: 100vw;
+  text-align: center;
+  z-index: 100;
+}
+h1 {
+  color: var(--color-texto);
+  font-size: 2.2rem;
+  text-shadow: 0 0 18px var(--color-sol-borde), 0 0 30px #fff;
+  margin-bottom: 0.5rem;
+}
+
+.universo {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* =========================
+   Componentes: Sol y Planetas
+   ========================= */
+/* --- Mejoras visuales realistas para el sistema solar --- */
+
+/* Sol con gradiente y pulso */
+.sol {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12.5rem;
+  height: 12.5rem;
+  margin-left: -6.25rem;
+  margin-top: -6.25rem;
+  background: radial-gradient(circle at 55% 45%, #fffde4 0%, #ffe066 40%, #ffb300 70%, #ff9900 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 60px 30px #fffde4, 0 0 150px 75px #ffb300, 0 0 300px 150px #ff9900, 0 0 40px 20px #fff8;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border: 0.25rem solid var(--color-borde);
+  filter: blur(0.2px) brightness(1.1);
+  animation: sol-pulso 4s infinite alternate;
+}
+@keyframes sol-pulso {
+  0% { filter: blur(0.2px) brightness(1.1); }
+  100% { filter: blur(2.5px) brightness(1.3); }
+}
+.sol .nombre {
+  color: var(--color-texto);
+  font-weight: bold;
+  text-shadow: 0 0 18px var(--color-sol-borde), 0 0 30px #fff;
+  font-size: 1.2em;
+  margin-bottom: 0.75rem;
+}
+
+/* Tierra con halo azul (atmósfera) */
+.planeta.tierra::after {
+  content: '';
+  position: absolute;
+  left: -8px; top: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(80,180,255,0.18) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Júpiter con bandas y la Gran Mancha Roja */
+.planeta.jupiter {
+  position: relative;
+  background: linear-gradient(180deg, #f4e2d8 20%, #c68642 40%, #fff 60%, #c68642 80%, #f4e2d8 100%);
+}
+.planeta.jupiter::after {
+  content: '';
+  position: absolute;
+  left: 60%; top: 60%;
+  width: 18px; height: 10px;
+  background: radial-gradient(ellipse at center, #d96c2c 60%, transparent 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+/* Saturno con bandas */
+.planeta.saturno {
+  background: linear-gradient(180deg, #ffe066 30%, #bfa76f 60%, #fff6c1 100%);
+}
+
+/* Urano y Neptuno con bandas sutiles */
+.planeta.urano {
+  background: linear-gradient(180deg, #b2f0f7 60%, #3ddad7 100%, #e0f7fa 80%);
+}
+.planeta.neptuno {
+  background: linear-gradient(180deg, #4f7ad7 60%, #243b6b 100%, #7ec8e3 80%);
+}
+
+/* Sombra en los planetas (efecto de luz solar) */
+.planeta {
+  box-shadow: 0 0 30px 10px rgba(0,0,0,0.4), 0 0 24px 8px #fff2, 0 0 60px 20px #fff1, -8px 8px 24px 0 #0008 inset;
+}
+
+/* Órbitas más tenues y con resplandor */
+.orbita {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 0.09rem solid rgba(255,255,255,0.10);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation-timing-function: linear;
+  pointer-events: none;
+  box-shadow: 0 0 8px 2px #fff2;
+}
+.planeta {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 1.875rem 0.625rem rgba(0,0,0,0.4), 0 0 0.75rem 0.125rem #fff2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-texto);
+  font-weight: bold;
+  font-size: 1em;
+  pointer-events: auto;
+  border: 0.125rem solid #fff2;
+  filter: brightness(1.1) saturate(1.2);
+  transition: filter 0.3s, box-shadow 0.3s;
+}
+.planeta:hover {
+  filter: brightness(1.3) saturate(1.5);
+  box-shadow: 0 0 3.75rem 1.25rem #fff8, 0 0 1.875rem 0.625rem #ff0a;
+  z-index: 100;
+}
+/* Planetas y órbitas */
+.orbita.mercurio { width: 18rem; height: 18rem; animation: orbita1 6s linear infinite; }
+.planeta.mercurio { width: 1.2rem; height: 1.2rem; background: linear-gradient(135deg, #b1b1b1 60%, #888 100%); }
+
+.orbita.venus { width: 22rem; height: 22rem; animation: orbita2 8s linear infinite; }
+.planeta.venus { width: 1.8rem; height: 1.8rem; background: linear-gradient(135deg, #e6c56b 60%, #b8860b 100%); }
+
+.orbita.tierra { width: 26rem; height: 26rem; animation: orbita3 10s linear infinite; }
+.planeta.tierra { width: 2rem; height: 2rem; background: linear-gradient(135deg, #3b8eea 60%, #1b2a49 100%); position: relative; }
+
+.orbita.marte { width: 30rem; height: 30rem; animation: orbita4 12s linear infinite; }
+.planeta.marte { width: 1.5rem; height: 1.5rem; background: linear-gradient(135deg, #c1440e 60%, #7b1e00 100%); }
+
+.orbita.jupiter { width: 36rem; height: 36rem; animation: orbita5 16s linear infinite; }
+.planeta.jupiter { width: 3.5rem; height: 3.5rem; background: linear-gradient(135deg, #f4e2d8 60%, #c68642 100%); }
+
+.orbita.saturno { width: 44rem; height: 44rem; animation: orbita6 20s linear infinite; }
+.planeta.saturno { width: 3rem; height: 3rem; background: linear-gradient(135deg, #ffe066 60%, #bfa76f 100%); border-radius: 50% 50% 45% 55%/50% 50% 55% 45%; box-shadow: 0 0 0.5rem 0.2rem #fff8, 0 0 1.5rem 0.5rem #ffe066; }
+
+.orbita.urano { width: 52rem; height: 52rem; animation: orbita7 24s linear infinite; }
+.planeta.urano { width: 2.2rem; height: 2.2rem; background: linear-gradient(135deg, #b2f0f7 60%, #3ddad7 100%); }
+
+.orbita.neptuno { width: 60rem; height: 60rem; animation: orbita8 28s linear infinite; }
+.planeta.neptuno { width: 2.1rem; height: 2.1rem; background: linear-gradient(135deg, #4f7ad7 60%, #243b6b 100%); }
+
+/* Eliminar planetas ficticios y esferas del dragón */
+.orbita.vegeta, .planeta.vegeta,
+.orbita.namek, .planeta.namek,
+.orbita.freezer, .planeta.freezer,
+.orbita.kaiosama, .planeta.kaiosama,
+.orbita.yardrat, .planeta.yardrat,
+.orbita.makyo, .planeta.makyo,
+.orbita.nuevo-namek, .planeta.nuevo-namek,
+.dragonballs, .esfera, .shenlong {
+  display: none !important;
+}
+
+/* =========================
+   Componentes: Esferas del Dragón y Shenlong
+   ========================= */
+/* .dragonballs {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12.5rem;
+  height: 12.5rem;
+  margin-left: -6.25rem;
+  margin-top: -6.25rem;
+  z-index: 20;
+  pointer-events: none;
+}
+.esfera {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  background: radial-gradient(circle, #ffb300 60%, #ff9900 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 1.25rem 0.5rem #ffb300, 0 0 2.5rem 1.25rem #ff9900;
+  border: 0.125rem solid #fff3;
+  opacity: 0.95;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.esfera1 { left: 50%; top: 0; transform: translate(-50%, 0); }
+.esfera2 { left: 90%; top: 25%; transform: translate(-50%, -50%); }
+.esfera3 { left: 100%; top: 65%; transform: translate(-100%, -50%); }
+.esfera4 { left: 75%; top: 100%; transform: translate(-50%, -100%); }
+.esfera5 { left: 25%; top: 100%; transform: translate(-50%, -100%); }
+.esfera6 { left: 0; top: 65%; transform: translate(0, -50%); }
+.esfera7 { left: 10%; top: 25%; transform: translate(-50%, -50%); }
+.esfera:hover {
+  box-shadow: 0 0 2.5rem 1rem #ffb300, 0 0 5rem 2.5rem #ff9900, 0 0 3.75rem 1.875rem #fff;
+  transform: scale(1.2) rotate(-10deg);
+  z-index: 100;
+}
+
+.shenlong {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20rem;
+  height: 20rem;
+  margin-left: -10rem;
+  margin-top: -10rem;
+  background: url('https://static.wikia.nocookie.net/dragonball/images/2/2d/Shenlong_DBZ.png') no-repeat center center/contain;
+  opacity: 0;
+  transition: opacity 0.7s, filter 0.7s;
+  pointer-events: none;
+  filter: drop-shadow(0 0 1.875rem #00ff00);
+}
+.dragonballs:hover ~ .shenlong,
+.dragonballs:focus-within ~ .shenlong {
+  opacity: 0.85;
+  animation: shenlong 8s ease-in-out infinite alternate;
+}
+@keyframes shenlong {
+  0% { filter: brightness(1) drop-shadow(0 0 1.25rem #00ff00); }
+  100% { filter: brightness(1.2) drop-shadow(0 0 3.75rem #00ff00); }
+} */
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+  position: absolute;
+  bottom: 0.625rem;
+  width: 100vw;
+  text-align: center;
+  color: var(--color-texto);
+  font-size: 1.1em;
+  text-shadow: 0 0 0.5rem #000;
+  z-index: 100;
+}
+
+/* =========================
+   Media Queries: Responsividad
+   ========================= */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  .sol, .dragonballs {
+    width: 8.5rem;
+    height: 8.5rem;
+    margin-left: -4.25rem;
+    margin-top: -4.25rem;
+  }
+  .shenlong {
+    width: 12rem;
+    height: 12rem;
+    margin-left: -6rem;
+    margin-top: -6rem;
+  }
+  header h1 {
+    font-size: 1.3rem;
+  }
+  .luna-realista {
+    right: -20px;
+    width: 14px;
+    height: 14px;
+    transform-origin: -20px 50%;
+  }
+  .luna-label {
+    font-size: 0.6em;
+  }
+}
+
+/* =========================
+   Accesibilidad
+   ========================= */
+:focus {
+  outline: 2px solid #ffb300;
+  outline-offset: 2px;
+}
+
+/* =========================
+   Animaciones de órbitas planetarias reales
+   ========================= */
+@keyframes orbita1 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes orbita2 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes orbita3 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes orbita4 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes orbita5 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes orbita6 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes orbita7 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes orbita8 { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* Animación para lunas */
+@keyframes orbita-luna-tierra {
+  0% { transform: rotate(0deg) translateY(-50%); }
+  100% { transform: rotate(360deg) translateY(-50%); }
+}
+
+.luna-realista {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 10;
+  animation: orbita-luna-tierra 3s linear infinite;
+  transform-origin: -18px 50%;
+}
+
+/* Ajuste para que las lunas sean visibles y animadas */
+.planeta .luna-realista {
+  will-change: transform;
+}
+
+/* Tooltip para nombre de planeta */
+.planeta span {
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: rgba(20,20,30,0.92);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+.planeta:hover span {
+  opacity: 1;
+}
+
+/* Z-index para que anillos y lunas no se oculten */
+.planeta.saturno .anillos-saturno {
+  z-index: 3 !important;
+}
+.luna-realista {
+  z-index: 4 !important;
+}
