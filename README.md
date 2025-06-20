@@ -1,3 +1,7 @@
+# Sistema Solar
+![image](https://github.com/user-attachments/assets/d492b28e-1669-48f0-9a2b-7535e41b9abc)
+
+
 # Sistema Solar Interactivo
 
 Este proyecto es una maqueta interactiva y realista del Sistema Solar, desarrollada con HTML, CSS y JavaScript puro. Permite visualizar los planetas reales orbitando el Sol, con animaciones, lunas, anillos y detalles visuales educativos.
